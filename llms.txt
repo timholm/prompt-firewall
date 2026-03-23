@@ -1,0 +1,11 @@
+# prompt-firewall
+
+> Lightweight API gateway middleware implementing Prompt Control-Flow Integrity (PCFI) to defend LLM APIs and RAG pipelines against prompt injection attacks.
+
+## Docs
+
+- [README](README.md): Overview, install, usage, API reference
+- [SPEC](SPEC.md): Original requirements and design
+- [main.go](main.go): HTTP server with `/v1/chat/completions` and `/v1/scan` endpoints, reverse proxy integration
+- [pcfi.go](pcfi.go): Core Firewall engine with provenance tracking and threat pattern detection (role-switch, lexical injection, privilege escalation, delimiter escape)
+- [pcfi_test.go](pcfi_test.go): Comprehensive test suite covering detection patterns, HTTP handlers, and integration tests
