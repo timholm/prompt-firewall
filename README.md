@@ -215,3 +215,11 @@ if !result.Allowed {
 ## License
 
 MIT
+
+## References
+
+### Research Papers
+- [Prompt Control-Flow Integrity](https://arxiv.org/abs/2603.18433) — provenance tagging and control-flow integrity model for LLM prompt injection defense
+
+### Built by
+Built by [claude-code-factory](https://github.com/timholm/claude-code-factory) — an autonomous system that turns arXiv research into production tools.

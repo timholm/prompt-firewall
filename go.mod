@@ -1,3 +1,3 @@
-module github.com/factory/prompt-firewall
+module github.com/timholm/prompt-firewall
 
 go 1.22
