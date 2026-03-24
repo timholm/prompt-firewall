@@ -1,11 +1,24 @@
 # prompt-firewall
 
-> Lightweight API gateway middleware implementing Prompt Control-Flow Integrity (PCFI) to defend LLM APIs and RAG pipelines against prompt injection attacks.
+> Stop prompt injection attacks before they reach your LLM. A sub-millisecond reverse proxy that sits between your app and any LLM API.
 
 ## Docs
 
-- [README](README.md): Overview, install, usage, API reference
-- [SPEC](SPEC.md): Original requirements and design
-- [main.go](main.go): HTTP server with `/v1/chat/completions` and `/v1/scan` endpoints, reverse proxy integration
+- [README](README.md): Overview, quick start, API reference, configuration, performance benchmarks
+- [main.go](main.go): HTTP server with reverse proxy, CLI flags, `/v1/chat/completions`, `/v1/scan`, `/health`, `/stats` endpoints
 - [pcfi.go](pcfi.go): Core Firewall engine with provenance tracking and threat pattern detection (role-switch, lexical injection, privilege escalation, delimiter escape)
-- [pcfi_test.go](pcfi_test.go): Comprehensive test suite covering detection patterns, HTTP handlers, and integration tests
+- [pcfi_test.go](pcfi_test.go): 22 tests covering all detection categories, HTTP handlers, health/stats endpoints, and benchmarks
+
+## Quick Start
+
+```bash
+go install github.com/timholm/prompt-firewall@latest
+prompt-firewall --upstream https://api.openai.com --listen :8080
+```
+
+## API
+
+- POST /v1/scan - scan messages for injection threats
+- POST /v1/chat/completions - scan + proxy to upstream LLM
+- GET /health - health check with version and uptime
+- GET /stats - request counters (total, allowed, blocked)
